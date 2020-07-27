@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import { strapi } from '../../services'
 import { queryToUrl } from '../../utils/query-to-url'
 import keys from '../../config'
-import { Result, notification } from 'antd';
+import { notification } from 'antd';
 
 const MainComponent = (props) => {
   const [visible, setVisible] = useState(false)
