@@ -24,8 +24,8 @@ const MainComponent = (props) => {
     } catch (error) {
       console.log('error :>> ', error);
       notification.error({
-        message: 'Erro ao carregar dados',
-        description: `A aplicação apresentou erros ao carregar dados da API. \n ${error}`,
+        message: 'Erro ao carregar dados da API',
+        description: error,
       });
       setLoading(false)
       setError(true)
