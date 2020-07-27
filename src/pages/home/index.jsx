@@ -20,7 +20,7 @@ const MainComponent = (props) => {
   const fetchData = async () => {
     try {
       setLoading(true)
-      const response = await strapi.find({ service: 'portfoli1os', query: queryToUrl() })
+      const response = await strapi.find({ service: 'portfolios', query: queryToUrl() })
       setLoading(false)
       setData(response)
     } catch (error) {
