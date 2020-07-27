@@ -35,7 +35,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
-    "start:development": "env-cmd -f ./environment/.env.development react-scripts start",
+    "start:development": "react-scripts start",
     "start": "REACT_APP_ENVIRONMENT=PRD node server.js",
     "start:build": "REACT_APP_ENVIRONMENT=PRD node server.js",
     "build": "react-scripts build",

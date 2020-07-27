@@ -7,20 +7,13 @@ import { Link } from 'react-router-dom'
 import { strapi } from '../../services'
 import { queryToUrl } from '../../utils/query-to-url'
 import keys from '../../config'
-import { notification } from 'antd';
+import { Button, notification } from 'antd';
 
 const MainComponent = (props) => {
   const [visible, setVisible] = useState(false)
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
-
-  const openNotificationWithIcon = (type, message) => {
-    notification[type]({
-      message: 'Erro ao carregar dados',
-      description: `A aplicação apresentou erros ao carregar dados da API. \n ${message}`,
-    });
-  };
 
   const fetchData = async () => {
     try {
@@ -30,9 +23,12 @@ const MainComponent = (props) => {
       setData(response)
     } catch (error) {
       console.log('error :>> ', error);
+      notification.error({
+        message: 'Erro ao carregar dados',
+        description: `A aplicação apresentou erros ao carregar dados da API. \n ${error}`,
+      });
       setLoading(false)
       setError(true)
-      openNotificationWithIcon('error', error);
     }
   }
 
