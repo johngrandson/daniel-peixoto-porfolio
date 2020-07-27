@@ -1,6 +1,7 @@
 import axios from 'axios';
+import keys from '../config'
 
-const API_ENDPOINT = process.env.REACT_APP_STRAPI_URL;
+const API_ENDPOINT = keys.REACT_APP_STRAPI_URL;
 
 const strapi = {
   async find({ endpoint = API_ENDPOINT, service, query }) {
