@@ -6,29 +6,37 @@ import { CircleToBlockLoading } from 'react-loadingg'
 import { Link } from 'react-router-dom'
 import { strapi } from '../../services'
 import { queryToUrl } from '../../utils/query-to-url'
+import { ToastContainer, toast } from 'react-toastify';
+import { Message } from 'semantic-ui-react'
 import keys from '../../config'
-import { Button, notification } from 'antd';
 
 const MainComponent = (props) => {
   const [visible, setVisible] = useState(false)
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const fetchData = async () => {
     try {
       setLoading(true)
-      const response = await strapi.find({ service: 'portfolios', query: queryToUrl() })
+      const response = await strapi.find({ service: 'portfoli1os', query: queryToUrl() })
       setLoading(false)
       setData(response)
     } catch (error) {
-      console.log('error :>> ', error);
-      notification.error({
-        message: 'Erro ao carregar dados da API',
-        description: error,
-      });
+      console.log(error);
       setLoading(false)
       setError(true)
+      setErrorMessage(error.message);
+      toast.error(`⚠️ ${error}!`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   }
 
@@ -39,13 +47,25 @@ const MainComponent = (props) => {
   return (
     <div className={`${visible && 'show-menu'} bg-black bg-grunge position-absolute left-0 top-0 width-100 height-100`}>
       <header>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          style={{ width: 330 }}
+        />
         <nav className='navbar bg-transparent navbar-top navbar-transparent-no-sticky full-width-pull-menu white-link no-transition'>
           <div className='container-fluid nav-header-container height-100px padding-three-half-lr sm-height-70px sm-padding-15px-lr'>
             <div className='col d-none d-md-block pl-0'>
               <div className='header-social-icon border-none no-padding-left no-margin-left'>
                 <a href='https://www.facebook.com/' title='Facebook' target='_blank'><i className='fab fa-facebook-f'></i></a>
                 <a href='https://twitter.com/' title='Twitter' target='_blank'><i className='fab fa-twitter'></i></a>
-                <a href='https://linkedin.com/' title='Linkedin' target='_blank'><i className='fab fa-linkedin'></i></a>
+                <a href='https://www.linkedin.com/in/daniel-peixoto-jardelino-ba94b3107/' title='Linkedin' target='_blank'><i className='fab fa-linkedin'></i></a>
               </div>
             </div>
             <div className='col text-md-center pl-0 pl-md-3'>
@@ -102,11 +122,17 @@ const MainComponent = (props) => {
           </div>
         </nav>
       </header>
+      {error && (
+        <Message className='container' negative style={{ marginTop: '20%' }}>
+          <Message.Header>Erro ao carregar dados da API</Message.Header>
+          <p>{errorMessage}</p>
+        </Message>
+      )}
       <section className='p-0'>
         <div className='swiper-bottom-scrollbar-full swiper-container'>
+
           <div className='swiper-wrapper'>
             {loading && <CircleToBlockLoading />}
-            {error && <h1>{error}</h1>}
             {data.length > 0 && data.map(res => (
               <div key={res.id} className='swiper-slide width-auto sm-height-auto last-paragraph-no-margin ml-4'>
                 <div className='height-100 d-flex align-items-center'>
