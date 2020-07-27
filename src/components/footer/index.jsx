@@ -3,14 +3,14 @@ import React from 'react'
 export default function Footer() {
   return (
     <footer className="footer-classic-dark bg-extra-dark-gray padding-five-bottom sm-padding-30px-bottom">
-      <div className="bg-dark-footer padding-50px-tb sm-padding-30px-tb">
+      <div className="bg-dark-footer padding-20px-tb sm-padding-30px-tb">
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-4 col-md-5 text-center alt-font sm-margin-15px-bottom">
               <a href="index.html">Powered by Fleye Systems <img className="fleye-logo" src="../assets/images/tentacles.png" data-rjs="images/tentacles.png" alt="Pofo" /></a>
             </div>
             <div className="col-lg-4 col-md-2 text-center sm-margin-10px-bottom">
-              <a href="index.html"><img className="footer-logo" src="../assets/images/logo-white.png" data-rjs="images/logo-white@2x.png" alt="Pofo" /></a>
+              <a href="index.html"><img className="footer-logo" src="../assets/images/logo-daniel.png" data-rjs="images/logo-daniel.png" alt="Pofo" /></a>
             </div>
             <div className="col-lg-4 col-md-5 text-center">
               <span className="alt-font margin-20px-right">On social networks</span>

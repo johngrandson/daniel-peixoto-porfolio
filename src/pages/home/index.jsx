@@ -6,6 +6,8 @@ import { CircleToBlockLoading } from 'react-loadingg'
 import { Link } from 'react-router-dom'
 import { strapi } from '../../services'
 import { queryToUrl } from '../../utils/query-to-url'
+import keys from '../../config'
+import { Result, notification } from 'antd';
 
 const MainComponent = (props) => {
   const [visible, setVisible] = useState(false)
@@ -13,16 +15,24 @@ const MainComponent = (props) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
 
+  const openNotificationWithIcon = (type, message) => {
+    notification[type]({
+      message: 'Erro ao carregar dados',
+      description: `A aplicação apresentou erros ao carregar dados da API. \n ${message}`,
+    });
+  };
+
   const fetchData = async () => {
     try {
       setLoading(true)
-      const response = await strapi.find({ service: 'portfolios', query: queryToUrl({ _limit: 10 }) })
+      const response = await strapi.find({ service: 'portfolios', query: queryToUrl() })
       setLoading(false)
       setData(response)
     } catch (error) {
+      console.log('error :>> ', error);
       setLoading(false)
       setError(true)
-      console.log('error :>> ', error)
+      openNotificationWithIcon('error', error);
     }
   }
 
@@ -31,7 +41,7 @@ const MainComponent = (props) => {
   }, [])
 
   return (
-    <div className={`${visible && 'show-menu'} bg-black position-absolute left-0 top-0 width-100 height-100`}>
+    <div className={`${visible && 'show-menu'} bg-black bg-grunge position-absolute left-0 top-0 width-100 height-100`}>
       <header>
         <nav className='navbar bg-transparent navbar-top navbar-transparent-no-sticky full-width-pull-menu white-link no-transition'>
           <div className='container-fluid nav-header-container height-100px padding-three-half-lr sm-height-70px sm-padding-15px-lr'>
@@ -43,7 +53,7 @@ const MainComponent = (props) => {
               </div>
             </div>
             <div className='col text-md-center pl-0 pl-md-3'>
-              <a className='logo' href='index.html'><img src='../assets/images/logo-white@2x.png' data-rjs='images/logo-white@2x.png' alt='Pofo' /></a>
+              <a className='logo' href='index.html'><img src='../assets/images/logo-daniel.png' data-rjs='images/logo-daniel.png' alt='Pofo' /></a>
             </div>
             <div className='col text-right pr-0'>
               <button onClick={() => setVisible(!visible)} className='navbar-toggler mobile-toggle d-inline-block' type='button' id='open-button' data-toggle='collapse' data-target='.navbar-collapse'>
@@ -58,7 +68,6 @@ const MainComponent = (props) => {
                     <div className='position-absolute height-100 width-100 text-center'>
                       <div className='display-table height-100 width-100'>
                         <div className='display-table-cell height-100 width-100 vertical-align-middle position-relative'>
-
                         </div>
                       </div>
                     </div>
@@ -73,7 +82,7 @@ const MainComponent = (props) => {
                             <Link to='/'>Home</Link>
                           </li>
                           <li className='dropdown'>
-                            <Link to='/portfolio'>Portfólio</Link>
+                            <Link to='/about'>Sobre mim</Link>
                           </li>
                           <li className='dropdown'>
                             <Link to='/contact'>Contato</Link>
@@ -100,27 +109,17 @@ const MainComponent = (props) => {
       <section className='p-0'>
         <div className='swiper-bottom-scrollbar-full swiper-container'>
           <div className='swiper-wrapper'>
-            <div className='swiper-slide width-550px sm-width-100 sm-height-auto'>
-              <div className='position-relative width-90 height-100 d-flex align-items-center padding-ten-all sm-padding-fifteen-all sm-width-100'>
-                <div>
-                  <h4 className='text-medium-gray d-block margin-5px-bottom alt-font'>Olá,</h4>
-                  <h6 className='text-medium-gray font-weight-300 margin-20px-bottom alt-font'>Eu sou Daniel Peixoto</h6>
-                  <p className='text-large d-block float-left font-weight-300 width-90 margin-35px-bottom'>I design thoughtful digital experiences & beautiful brand aesthetics. I provide high quality web design services.</p>
-                  <img src='../assets/images/signature.png' className='width-60 signature' alt='' />
-                </div>
-              </div>
-            </div>
             {loading && <CircleToBlockLoading />}
-            {error && 'error!!'}
+            {error && <h1>{error}</h1>}
             {data.length > 0 && data.map(res => (
-              <div key={res.id} className='swiper-slide width-auto sm-height-auto last-paragraph-no-margin mr-4'>
+              <div key={res.id} className='swiper-slide width-auto sm-height-auto last-paragraph-no-margin ml-4'>
                 <div className='height-100 d-flex align-items-center'>
                   <div className='d-block position-relative'>
-                    <Link to={`/project-details/${res.id}`}><img src={`${process.env.REACT_APP_STRAPI_URL}${res.thumb[0].url}`} alt={res.title} /></Link>
+                    <Link to={`/project-details/${res.id}`}><img src={`${keys.REACT_APP_STRAPI_URL}${res.thumb[0].url}`} alt={res.title} /></Link>
                   </div>
                   <div className='hover-title-box padding-55px-lr width-300px md-width-100 md-padding-20px-lr'>
                     <div className='separator width-50px bg-black d-none d-xl-inline-block sm-margin-lr-auto'></div>
-                    <h3><a className='text-white-2 font-weight-600 alt-font text-white-2-hover' href='single-project-page-01.html'>{res.title}</a></h3>
+                    <h3><Link to={`/project-details/${res.id}`} className='text-extra-medium-gray font-weight-600 alt-font text-extra-medium-gray-hover'>{res.title}</Link></h3>
                   </div>
                 </div>
               </div>
