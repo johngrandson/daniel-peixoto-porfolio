@@ -41,13 +41,13 @@ const ProjectDetails = ({ match }) => {
                   <h2 className='alt-font font-weight-700 letter-spacing-minus-2 text-white-2 margin-5px-bottom'>{data.title}</h2>
                   <h6 className='alt-font font-weight-300'>{data.categories}</h6>
                   <p className='margin-35px-bottom d-block'>{data.description}</p>
-                  {data.url && <a href='index.html' className='btn btn-transparent-light-gray btn-small'>Launch Website</a>}
+                  {data.url && <a href='/' className='btn btn-transparent-light-gray btn-small'>Launch Website</a>}
                 </div>
                 <div className='col-12 col-lg-4 offset-lg-2 wow fadeInRight'>
                   <ul className='list-style-9 margin-twelve-left'>
                     <li className='text-uppercase'><span className='d-block text-extra-small text-white-2'>Cliente</span>{data.client}</li>
                     <li className='text-uppercase'><span className='d-block text-extra-small text-white-2'>Data de publicação</span>{data.creationDate}</li>
-                    {data.url && <li className='text-uppercase'><span className='d-block text-extra-small text-white-2'>Website</span><a href='index.html'>{data.url}</a></li>}
+                    {data.url && <li className='text-uppercase'><span className='d-block text-extra-small text-white-2'>Website</span><a href='/'>{data.url}</a></li>}
                   </ul>
                 </div>
               </div>

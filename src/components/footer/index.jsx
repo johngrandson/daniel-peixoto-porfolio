@@ -7,10 +7,10 @@ export default function Footer() {
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-4 col-md-5 text-center alt-font sm-margin-15px-bottom">
-              <a href="index.html">Powered by Fleye Systems <img className="fleye-logo" src="../assets/images/tentacles.png" data-rjs="images/tentacles.png" alt="Pofo" /></a>
+              <a href="/">Powered by Fleye Systems <img className="fleye-logo" src="../assets/images/tentacles.png" data-rjs="images/tentacles.png" alt="Pofo" /></a>
             </div>
             <div className="col-lg-4 col-md-2 text-center sm-margin-10px-bottom">
-              <a href="index.html"><img className="footer-logo" src="../assets/images/logo-daniel.png" data-rjs="images/logo-daniel.png" alt="Pofo" /></a>
+              <a href="/"><img className="footer-logo" src="../assets/images/logo-daniel.png" data-rjs="images/logo-daniel.png" alt="Pofo" /></a>
             </div>
             <div className="col-lg-4 col-md-5 text-center">
               <span className="alt-font margin-20px-right">On social networks</span>

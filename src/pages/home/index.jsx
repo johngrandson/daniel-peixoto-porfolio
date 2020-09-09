@@ -69,7 +69,7 @@ const MainComponent = (props) => {
               </div>
             </div>
             <div className='col text-md-center pl-0 pl-md-3'>
-              <a className='logo' href='index.html'><img src='../assets/images/logo-daniel.png' data-rjs='images/logo-daniel.png' alt='Pofo' /></a>
+              <a className='logo' href='/'><img src='../assets/images/logo-daniel.png' data-rjs='images/logo-daniel.png' alt='Pofo' /></a>
             </div>
             <div className='col text-right pr-0'>
               <button onClick={() => setVisible(!visible)} className='navbar-toggler mobile-toggle d-inline-block' type='button' id='open-button' data-toggle='collapse' data-target='.navbar-collapse'>
