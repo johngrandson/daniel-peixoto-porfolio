@@ -62,7 +62,7 @@ const ProjectDetails = ({ match }) => {
                       <li className='grid-item web branding design wow fadeInUp float-left'>
                         <a href='#'>
                           <figure>
-                            <div className='portfolio-img'><img src={`${keys.REACT_APP_STRAPI_URL}${res.url}`} alt='' /></div>
+                            <div className='portfolio-img'><img src={`${res.url}`} alt='' /></div>
                             <figcaption>
                               <div className='portfolio-hover-main text-center last-paragraph-no-margin'>
                                 <div className='portfolio-hover-box align-middle'>
@@ -87,7 +87,7 @@ const ProjectDetails = ({ match }) => {
               <div className='parallax wow fadeIn' data-stellar-background-ratio='0.1'>
                 <div className='row justify-content-center bg-light-gray'>
                   <ReactPlayer
-                    url={`${keys.REACT_APP_STRAPI_URL}${res.url}`}
+                    url={`${res.url}`}
                     playing
                     className='mb-4 mt-4'
                     height={500}

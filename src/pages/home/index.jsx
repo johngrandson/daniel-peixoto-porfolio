@@ -137,7 +137,7 @@ const MainComponent = (props) => {
               <div key={res.id} className='swiper-slide width-auto sm-height-auto last-paragraph-no-margin ml-4'>
                 <div className='height-100 d-flex align-items-center'>
                   <div className='d-block position-relative'>
-                    <Link to={`/project-details/${res.id}`}><img src={`${keys.REACT_APP_STRAPI_URL}${res.thumb[0].url}`} alt={res.title} /></Link>
+                    <Link to={`/project-details/${res.id}`}><img src={`${res.thumb[0].url}`} alt={res.title} /></Link>
                   </div>
                   <div className='hover-title-box padding-55px-lr width-300px md-width-100 md-padding-20px-lr'>
                     <div className='separator width-50px bg-black d-none d-xl-inline-block sm-margin-lr-auto'></div>
